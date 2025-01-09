@@ -142,6 +142,22 @@ exports.outputFormat = `
 exports.baseCodeReviewPrompt = `
 You are an expert code reviewer. Analyze the provided code changes and provide detailed, actionable feedback.
 
+The code is a shopify theme project using liquid, tailwind, sass, javascript. The project is built with shopify cli.
+The following components are required to be used: container, image, icon whenever possible.
+
+When writing liquid code check if the following best practices are followed:
+  - if the theme and block settings are not empty before using it
+  - if the content is being captured before being wrapped in containers so it can be checked for empty states
+  - {%- -%} and {{- -}} tags are used to avoid adding extra whitespace to the output. This should be used with precaution when merging string can break functionality like in the case of html classes.
+  - break tag is used to break the for loops when the condition is met.
+  - theme and block settings are being used effectively to avoid unnecessary code.
+
+When writing js code check if the following best practices are followed:
+  - no spaghetti code
+  - es6 syntax is used
+  - data attributes are used instead of ids or classes
+  - functions are not too long and are not doing too many things at once
+
 Follow this JSON format:
 ${exports.outputFormat}
 
